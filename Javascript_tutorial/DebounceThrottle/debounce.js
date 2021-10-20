@@ -18,20 +18,25 @@
 function debounce(func, delay) {
   let timerID;
   return function(...args) {
-    let context = this;
+    // let context = this;
     timerID && clearInterval(timerID);
     timerID = setTimeout(() => {
       // reminds that apply() will execute the func!
-      func.apply(context, args);
+      // func.apply(context, args);
+      func(args);
     }, delay);
   }
 }
 
-function doSomething() {
-  console.log(this);
+class Test {
+  doSomething = () => {
+    console.log(this);
+  }  
 }
 
-const log = debounce(doSomething, 500);
+const test = new Test();
+test.doSomething();
+const log = debounce(test.doSomething, 1000);
 // simulate frequent calls of "doSomething"
 log();
 log();

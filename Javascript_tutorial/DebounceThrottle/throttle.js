@@ -18,7 +18,7 @@
 function throttle(func, delay) {
   let timerId;
   return function(...args) {
-    let context = this;
+    // let context = this;
     // existing timerID means that the method has not been executed yet
     if (timerID) {
       return;
@@ -27,7 +27,8 @@ function throttle(func, delay) {
       // when the method executes, make timerID null
       timerID = null;
       // reminds that apply() will execute func!
-      func.apply(context, args);
+      // func.apply(context, args);
+      func(args);
     }, delay);
   }
 }
