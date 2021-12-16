@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sticky Navigation Bar</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<div class="header">
+			<nav class="nav__wrapper">
+				<img src="images/logo.png" class="logo" />
+				<ul class="nav__body">
+					<li class="nav__item">HOME</li>
+					<li class="nav__item">ABOUT</li>
+					<li class="nav__item">SERVICES</li>
+					<li class="nav__item">PRODUCT</li>
+					<li class="nav__item">CONTACT</li>
+				</ul>
+			</nav>
+		</div>
+		<p class="text">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quo.
+			Magni nesciunt placeat perferendis quos ullam modi, voluptatibus
+			doloremque neque doloribus dolor, ea dignissimos tempora molestiae
+			repellendus officiis accusantium explicabo.
+		</p>
+		<p class="text">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quo.
+			Magni nesciunt placeat perferendis quos ullam modi, voluptatibus
+			doloremque neque doloribus dolor, ea dignissimos tempora molestiae
+			repellendus officiis accusantium explicabo.
+		</p>
+		<p class="text">
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quo.
+			Magni nesciunt placeat perferendis quos ullam modi, voluptatibus
+			doloremque neque doloribus dolor, ea dignissimos tempora molestiae
+			repellendus officiis accusantium explicabo.
+		</p>
+		<script>
+			const navbar = document.querySelector('.nav__wrapper'),
+				body = document.querySelector('.nav__body');
+			window.onscroll = function () {
+				if (window.pageYOffset >= body.offsetTop) {
+					navbar.classList.toggle('sticky');
+				} else {
+					navbar.classList.remove('sticky');
+				}
+			};
+		</script>
+	</body>
+</html>
