@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>gradient texts</title>
+		<link rel="stylesheet" href="./style.css" />
+	</head>
+	<body>
+		<p class="landIn">
+			Ano hi watashitachi mada shiranai no Fushigi no monogatari desu.
+		</p>
+		<script>
+			let landInTexts = document.querySelectorAll('.landIn');
+			landInTexts.forEach((landInText) => {
+				let letters = landInText.textContent.split('');
+				landInText.textContent = '';
+				letters.forEach((letter, i) => {
+					let span = document.createElement('span');
+					span.textContent = letter;
+					span.style.animationDelay = `${i * 0.05}s`;
+					landInText.append(span);
+				});
+			});
+		</script>
+	</body>
+</html>
