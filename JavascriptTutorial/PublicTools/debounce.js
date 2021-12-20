@@ -9,29 +9,31 @@
  * 因为防抖函数在计时器完成计时后才执行，所以就实现了防抖。
  * This function uses closure to restore the ID of asynchronous timer.
  * When there are multiple frequent calls of func, only the last call will be executed,
- * since the timer will be re-created for multiple times as well, 
+ * since the timer will be re-created for multiple times as well,
  * and only the last timer can execute the debounce method without interruption.
  * @param {function} func The method that you hope to debounce
  * @param {number} delay The delay time for debounce
- * @returns 
+ * @returns
  */
 function debounce(func, delay) {
-  let timerID;
-  return function(...args) {
-    // let context = this;
-    timerID && clearInterval(timerID);
-    timerID = setTimeout(() => {
-      // reminds that apply() will execute the func!
-      // func.apply(context, args);
-      func(args);
-    }, delay);
-  }
+	let timerID;
+	return function (...args) {
+		// let context = this;
+		timerID && clearInterval(timerID);
+		timerID = setTimeout(() => {
+			// reminds that apply() will execute the func!
+			// func.apply(context, args);
+			func(args);
+		}, delay);
+	};
 }
 
+module.exports = debounce;
+
 class Test {
-  doSomething = () => {
-    console.log(this);
-  }  
+	doSomething = () => {
+		console.log(this);
+	};
 }
 
 const test = new Test();

@@ -9,26 +9,28 @@
  * 因为节流函数在计时器完成计时后才执行，所以就实现了节流。
  * This function uses closure to restore the ID of asynchronous timer.
  * When there are multiple frequent calls of func, only the first call within a fixed period will be executed,
- * since the timer will only be created once within that period, 
+ * since the timer will only be created once within that period,
  * and thus func will only be executed once as well.
- * @param {function} func 
- * @param {number} delay 
- * @returns 
+ * @param {function} func
+ * @param {number} delay
+ * @returns
  */
 function throttle(func, delay) {
-  let timerId;
-  return function(...args) {
-    // let context = this;
-    // existing timerID means that the method has not been executed yet
-    if (timerID) {
-      return;
-    }
-    timerID = setTimeout(() => {
-      // when the method executes, make timerID null
-      timerID = null;
-      // reminds that apply() will execute func!
-      // func.apply(context, args);
-      func(args);
-    }, delay);
-  }
+	let timerId;
+	return function (...args) {
+		// let context = this;
+		// existing timerID means that the method has not been executed yet
+		if (timerID) {
+			return;
+		}
+		timerID = setTimeout(() => {
+			// when the method executes, make timerID null
+			timerID = null;
+			// reminds that apply() will execute func!
+			// func.apply(context, args);
+			func(args);
+		}, delay);
+	};
 }
+
+module.exports = throttle;
