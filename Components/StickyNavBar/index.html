@@ -43,7 +43,8 @@
 				body = document.querySelector('.nav__body');
 			window.onscroll = function () {
 				if (window.pageYOffset >= body.offsetTop) {
-					navbar.classList.toggle('sticky');
+					!navbar.classList.contains('sticky') &&
+						navbar.classList.add('sticky');
 				} else {
 					navbar.classList.remove('sticky');
 				}
