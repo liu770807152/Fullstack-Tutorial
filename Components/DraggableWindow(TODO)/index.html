@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="blank-cell-group">
+					<div class="cell-item"><div class="wrapper"></div></div>
+					<div class="cell-item"><div class="wrapper"></div></div>
+					<div class="cell-item"><div class="wrapper"></div></div>
+					<div class="cell-item"><div class="wrapper"></div></div>
+				</div>
+				<div class="char-cell-group"></div>
+			</div>
+		</div>
+		<script>
+			const words = ['诗情画意', '南来北往', '一团和气', '落花流水'],
+				oCharCellGroup = document.querySelector('.char-cell-group'),
+				oBlanks = document.querySelectorAll(
+					'.blank-cell-group .cell-item .wrapper'
+				);
+			let charCollection = [],
+				BlankAreas = [],
+				charAreas = [],
+				resArr = [],
+				oChars = null,
+				startX = 0,
+				startY = 0,
+				cellX = 0,
+				cellY = 0,
+				mouseX = 0,
+				mouseY = 0;
+			const init = () => {
+				charCollection = formatCharCollection(words);
+				render();
+				getAreas(Array.from(oBlanks), BlankAreas);
+
+				oChars = oCharCellGroup.querySelectorAll('.cell-item .wrapper');
+				getAreas(Array.from(oChars), charAreas);
+				bindEvent();
+			};
+			function formatCharCollection(data) {
+				let _arr = [];
+				data.forEach((item) => {
+					_arr = _arr.concat(item.split(''));
+				});
+				return _arr.sort(randomSort);
+			}
+			function getAreas(domCollection, arrWrapper) {
+				let startX = 0,
+					startY = 0,
+					endX = 0,
+					endY = 0,
+					oBlank = null;
+				domCollection.forEach((item) => {
+					oBlank = item;
+					startX = oBlank.offsetLeft;
+					startY = oBlank.offsetTop;
+					arrWrapper.push({ startX, startY });
+				});
+			}
+			function render() {
+				oCharCellGroup.innerHTML = '';
+				charCollection.forEach((item, index) => {
+					oCharCellGroup.appendChild(charCellTpl(item, index));
+				});
+			}
+			function bindEvent() {
+				let oChar = null;
+				oChars.forEach((item) => {
+					oChar = item;
+					oChar.addEventListener('touchstart', handleTouchStart, false);
+					oChar.addEventListener('touchmove', handleTouchMove, false);
+					oChar.addEventListener('touchend', handleTouchEnd, false);
+				});
+			}
+			function handleTouchStart(e) {
+				cellW = this.offsetWidth;
+				cellH = this.offsetHeight;
+				cellX = this.offsetLeft;
+				cellY = this.offsetTop;
+				startX = e.touches[0].clientX;
+				startY = e.touches[0].clientY;
+				mouseX = startX - cellX;
+				mouseY = startY - cellY;
+				this.style.position = 'fixed';
+				this.style.offsetWidth = cellW / 10 + 'rem';
+				this.style.offsetHeight = cellH / 10 + 'rem';
+				this.style.left = cellX / 10 + 'rem';
+				this.style.top = cellY / 10 + 'rem';
+			}
+			function handleTouchMove(e) {
+				e.preventDefault();
+				const moveX = e.touches[0].clientX,
+					moveY = e.touches[0].clientY;
+				cellX = moveX - mouseX;
+				cellY = moveY - mouseY;
+				this.style.left = cellX / 10 + 'rem';
+				this.style.top = cellY / 10 + 'rem';
+			}
+			function handleTouchEnd(e) {
+				const blankWidth = oBlanks[0].offsetWidth,
+					blankHeight = oBlanks[0].offsetHeight;
+				for (let i = 0; i < BlankAreas.length; i++) {
+					if (resArr[i]) {
+						continue;
+					}
+					let { startX, startY } = BlankAreas[i];
+					if (
+						(cellX > startX &&
+							cellX < startX + blankWidth / 2 &&
+							cellY > startY &&
+							cellY < startY + blankHeight / 2) ||
+						(cellX + blankWidth < startX + blankWidth / 2 &&
+							cellX + blankWidth < startX + blankWidth &&
+							cellY > startY &&
+							cellY < startY + blankHeight / 2)
+					) {
+						setPosition(this, i, { startX, startY });
+						if (resArr.length === 4) {
+							setTimeout(() => {
+								if (checkResult() !== -1) {
+									alert('Congratulations!');
+								} else {
+									alert('Wrong answer!');
+								}
+								resetPosition();
+							}, 500);
+						}
+						return;
+					}
+				}
+
+				const _index = this.dataset.index,
+					charArea = charAreas[_index];
+				this.style.left = charArea.startX / 10 + 'rem';
+				this.style.top = charArea.startY / 10 + 'rem';
+			}
+			function checkResult() {
+				let word = '';
+				resArr.forEach((item) => {
+					word += item.char;
+				});
+				return words.find((item) => item === word);
+			}
+			function resetPosition() {
+				resArr.forEach((item) => {
+					const el = item.el,
+						index = Number(el.dataset.index),
+						{ startX, startY } = charAreas[index];
+					el.style.left = startX / 10 + 'rem';
+					el.style.top = startY / 10 + 'rem';
+				});
+				resArr = [];
+				startX = [];
+				startY = [];
+				cellX = 0;
+				cellY = 0;
+				mouseX = 0;
+				mouseY = 0;
+			}
+			function setPosition(el, index, { startX, startY }) {
+				el.style.left = startX / 10 + 'rem';
+				el.style.top = startY / 10 + 'rem';
+			}
+			function charCellTpl(char, index) {
+				const item = document.createElement('div'),
+					wrapper = document.createElement('div');
+				item.className = 'cell-item';
+				wrapper.className = 'wrapper';
+				wrapper.setAttribute('data-index', index);
+				wrapper.innerHTML = char;
+				item.appendChild(wrapper);
+				return item;
+				// return `
+				// 	<div class="cell-item">
+				// 		<div class="wrapper" data-index="${index}">${char}</div>
+				// 	</div>
+				// `;
+			}
+			function randomSort(a, b) {
+				return Math.random() > 0.5 ? -1 : 1;
+			}
+			init();
+		</script>
+	</body>
+</html>
