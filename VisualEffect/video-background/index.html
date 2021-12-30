@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<a href="#" class="logo">Logo</a>
+			<div class="right-side">
+				<div class="btns day-night">
+					<ion-icon name="moon-outline"></ion-icon>
+					<ion-icon name="sunny-outline"></ion-icon>
+				</div>
+				<div class="btns menu-toggle">
+					<ion-icon name="menu-outline"></ion-icon>
+					<ion-icon name="close-outline"></ion-icon>
+				</div>
+			</div>
+		</header>
+		<section class="main">
+			<video src="video/video.mp4" autoplay loop muted type="mp4"></video>
+			<img class="mask" src="image/mask.jpg" alt="mask" />
+			<h2>Ocean</h2>
+		</section>
+		<ul class="navigation">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Package</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+		<script
+			type="module"
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+		></script>
+		<script
+			nomodule
+			src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+		></script>
+		<script>
+			const dayNight = document.querySelector('.day-night'),
+				menuToggle = document.querySelector('.menu-toggle'),
+				navigation = document.querySelector('.navigation'),
+				body = document.querySelector('body');
+			dayNight.onclick = function () {
+				dayNight.classList.toggle('active');
+				body.classList.toggle('dark');
+			};
+			menuToggle.onclick = function () {
+				menuToggle.classList.toggle('active');
+				navigation.classList.toggle('active');
+			};
+		</script>
+	</body>
+</html>
