@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			.parent {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				width: auto;
+				height: 100px;
+				padding: 10px;
+				background: wheat;
+			}
+			.child {
+				width: 80px;
+				height: 80px;
+				background: tomato;
+				border: 1px solid black;
+				text-align: center;
+				line-height: 80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="parent" id="parent">
+			<div class="child" contenteditable="true">Child1</div>
+			<div class="child" contenteditable="true">Child2</div>
+			<div class="child" contenteditable="true">Child3</div>
+		</div>
+		<script>
+			const mutationObserver = new MutationObserver((entries) => {
+				console.log(entries); // a list of MutationRecord, which records all the changes on HTML elements, according to the object passed to observe()
+			});
+			const parent = document.querySelector('.parent');
+			mutationObserver.observe(parent, {
+				childList: true, // check if DIRECT CHILDREN are changed
+				attributes: true, // check if its attributes are changed
+				attributeOldValue: true, // record the old attributes before changes
+				attributeFilter: ['id'], // only check the attribute of "id"
+			});
+			// mutationObserver.disconnect()
+			mutationObserver.observe(parent, {
+				subtree: true, // check ALL children nodes such as text
+				characterData: true, // check if text data is changed
+				characterDataOldValue: true, // record old text data
+			});
+		</script>
+	</body>
+</html>
