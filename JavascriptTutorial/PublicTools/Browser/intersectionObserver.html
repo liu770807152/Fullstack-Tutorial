@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			.card-container {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 1.5rem;
+				width: auto;
+				min-height: 100vh;
+			}
+			.card-container:first-child {
+				margin-top: 100px;
+			}
+			.card {
+				width: fit-content;
+				height: 50px;
+				padding: 0.5rem;
+				border: 2px solid black;
+				border-radius: 0.5rem;
+				text-align: center;
+				font-size: 2rem;
+				line-height: 50px;
+				transform: translateX(100px);
+				opacity: 0;
+				transition: all 150ms linear;
+			}
+			.card.show {
+				transform: translateX(0);
+				opacity: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="card-container">
+			<div class="card show">This is the first card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card show">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is a card</div>
+			<div class="card">This is the last card</div>
+		</div>
+		<script>
+			const cards = document.querySelectorAll('.card'),
+				cardContainer = document.querySelector('.card-container');
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						console.log(entry.isIntersecting);
+						// isIntersecting设置为true的话，全部元素可见时才操作类名
+						entry.target.classList.toggle('show', entry.isIntersecting);
+						// 一旦可见，不再监测
+						if (entry.isIntersecting) observer.unobserve(entry.target);
+					});
+				},
+				{
+					threshold: 0.5, // 0~1，1表示元素100%内容可见时才视为可见，将isIntersecting设置为true，并开始动画
+					rootMargin: '-50px', // 元素位于距离上下边缘内100px时才视为可见
+					// root: cardContainer, // 监测的父元素
+				}
+			);
+			cards.forEach((card) => observer.observe(card));
+			// 滚动到最后一个卡片后，无限添加新的10张卡片
+			const lastCardObserver = new IntersectionObserver((entries) => {
+				const lastCard = entries[0];
+				if (!lastCard.isIntersecting) return;
+				loadNewCards();
+				lastCardObserver.unobserve(lastCard.target);
+				lastCardObserver.observe(document.querySelector('.card:last-child'));
+			}, {});
+			lastCardObserver.observe(document.querySelector('.card:last-child'));
+			function loadNewCards() {
+				for (let i = 0; i < 10; i++) {
+					const card = document.createElement('div');
+					card.textContent = 'New Card';
+					card.classList.add('card');
+					observer.observe(card);
+					cardContainer.append(card);
+				}
+			}
+		</script>
+	</body>
+</html>
