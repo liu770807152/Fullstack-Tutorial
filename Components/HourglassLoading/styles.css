@@ -1,0 +1,91 @@
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+.loading {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	width: 86px;
+	height: 190px;
+	animation: rotate 5s linear infinite;
+}
+/* flowing sand from top to bottom */
+.loading::after {
+	content: '';
+	position: absolute;
+	top: 20px;
+	width: 3px;
+	height: 98px;
+	background: #f1dcb0;
+	animation: flow 5s linear infinite;
+}
+.top,
+.bottom {
+	position: relative;
+	width: 70px;
+	height: 70px;
+	border: solid #88c4bf49;
+	border-width: 4px 4px 10px 10px;
+	border-radius: 70% 100% 70% 25%;
+	overflow: hidden;
+}
+.top {
+	transform: rotate(-45deg);
+}
+.bottom {
+	transform: rotate(135deg);
+}
+/* sand */
+.top::before,
+.bottom::before {
+	content: '';
+	position: absolute;
+	width: inherit;
+	height: inherit;
+	background: #f1dcb0;
+	animation: 5s linear infinite;
+}
+.top::before {
+	border-radius: 0 70% 0 0;
+	animation-name: drop-sand;
+}
+.bottom::before {
+	border-radius: 0 0 0 75%;
+	/* move sand to invisible space */
+	transform: translate(50px, -50px);
+	animation-name: fill-sand;
+}
+@keyframes drop-sand {
+	to {
+		transform: translate(-50px, 50px);
+		border-radius: 0 100% 0 0;
+	}
+}
+@keyframes fill-sand {
+	to {
+		transform: translate(-4px, 4px);
+		border-radius: 0 0 0 0;
+	}
+}
+@keyframes flow {
+	10%,
+	100% {
+		transform: translateY(65px);
+	}
+}
+@keyframes rotate {
+	0%,
+	90% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(180deg);
+	}
+}
