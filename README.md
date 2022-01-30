@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+# Fullstack Tutorial Code Base
 
-You can use the [editor on GitHub](https://github.com/liu770807152/Web/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+A code warehouse of fullstack skills including tutorial codes, JS tool functions and visual components ranging from HTML5, CSS3, JS, TS, React, Node.js, NoSQL and many more.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Description
 
-### Markdown
+#### Components
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Collects usable out-of-box visual components written only in plain HTML, CSS & JS.
 
-```markdown
-Syntax highlighted code block
+#### CSSTutorial
 
-# Header 1
-## Header 2
-### Header 3
+Includes CSS tutorial codes from starter level to advance level (to be continued).
 
-- Bulleted
-- List
+#### HTMLTutorial
 
-1. Numbered
-2. List
+Includes HTML tutorials codes from starter level to advance level (to be continued).
 
-**Bold** and _Italic_ and `Code` text
+#### JavascriptTutorial
 
-[Link](url) and ![Image](src)
-```
+A collection of multi-functional JS codes. Demo codes are as listed:
+* basic syntax
+* Ajax
+* JQuery
+* visual components
+* public tool functions
+* MongoDB usage
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+#### NodeTutorial
 
-### Jekyll Themes
+Includes tutorial codes of pure Node.js, Express, Koa2 & MySQL connection.
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/liu770807152/Web/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+#### ReactTutorial
 
-### Support or Contact
+Provides detailed demo codes categorized to "Elementary", "Intermediate" and "Advanced" levels.
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+#### VisualEffect
+
+Collects many amazing visual effects including but not limited to animations and parallax effects.
+
+## Getting Started
+
+### Dependencies
+
+Different tutorial modules require different dependencies. Please install with npm or yarn.
+
+## Authors
+
+Chris Liu 
+[@ChrisLiu](https://www.linkedin.com/in/chris-liu-08339a178)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE.md file for details.
