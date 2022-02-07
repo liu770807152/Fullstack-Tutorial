@@ -1,0 +1,36 @@
+.ripple-effect {
+	display: inline-block;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	vertical-align: middle;
+	user-select: none;
+	z-index: 1;
+}
+.ripple-effect .ripple {
+	position: absolute;
+	border-radius: 50%;
+	/* background: linear-gradient(
+		45deg,
+		rgba(255, 0, 0, 0.5),
+		rgba(255, 255, 0, 0.5),
+		rgba(0, 255, 255, 0.5),
+		rgba(0, 0, 255, 0.5)
+	); */
+	background: #fff;
+	transform: translate(-50%, -50%);
+	pointer-events: none;
+	animation: ripple 1s linear;
+}
+@keyframes ripple {
+	0% {
+		width: 0;
+		height: 0;
+		opacity: 0.5;
+	}
+	100% {
+		width: 500px;
+		height: 500px;
+		opacity: 0;
+	}
+}

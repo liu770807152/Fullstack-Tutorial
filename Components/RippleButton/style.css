@@ -1,0 +1,24 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(255, 255, 255, 0.6);
+}
+.btn {
+	display: inline-block;
+	padding: 12px 24px;
+	background: linear-gradient(90deg, #0162c8, #55e7fc);
+	color: #fff;
+	border: none;
+	border-radius: 40px;
+	font-size: 18px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="stylesheet" href="style.css" />
+		<link rel="stylesheet" href="ripple.css" />
+	</head>
+	<body>
+		<div class="container">
+			<button class="btn ripple-effect">BUTTON</button>
+		</div>
+		<script>
+			const btn = document.querySelector('.ripple-effect');
+			console.log(btn);
+			btn.onclick = function (e) {
+				let x = e.clientX - e.target.offsetLeft,
+					y = e.clientY - e.target.offsetTop;
+				const ripples = document.createElement('span');
+				ripples.classList.add('ripple');
+				ripples.style.left = x + 'px';
+				ripples.style.top = y + 'px';
+				this.append(ripples);
+				setTimeout(() => {
+					ripples.remove();
+				}, 1000);
+			};
+		</script>
+	</body>
+</html>
