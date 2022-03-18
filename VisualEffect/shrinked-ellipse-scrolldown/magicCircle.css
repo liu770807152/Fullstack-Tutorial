@@ -1,0 +1,28 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height:200vh;
+    background: #111;
+}
+section{
+    position: absolute;
+    width:100%;
+    height: calc(100% - 200px);
+    /* 背景和图片一个颜色 */
+    background:#2abbff;
+}
+section .curve{
+    position: absolute;
+    /* 向下移200px */
+    bottom:-200px;
+    height:200px;
+    /* 设置变换起点 */
+    transform-origin: top;
+    width:100%;
+}
+section .curve img{
+    width: 100%;
+    height:100%
+}

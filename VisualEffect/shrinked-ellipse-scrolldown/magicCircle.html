@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>magicCircle</title>
+
+        <link rel="stylesheet" href="magicCircle.css">
+    </head>
+    <body>
+      <section>
+          <span class = "curve">
+              <img src="curve1.png" alt="curve">
+          </span>
+      </section>  
+      <script>
+
+          var curve = document.querySelector('.curve');
+          window.addEventListener('scroll',function(){
+              //scale的值随着scrollY的增大而增大直至变为0
+              var value = 1 + window.scrollY/-400;
+              curve.style.transform = `scaleY(${value})`;
+          });
+      </script>
+    </body>
+</html>
