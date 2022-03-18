@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CodePen - Login form / daily challenge 16/11</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <html lang="en">
+      <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Font online-->
+        <link
+          href="https://fonts.googleapis.com/css?family=Open+Sans"
+          rel="stylesheet"
+        />
+
+        <!--        Animate.css-->
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"
+        />
+
+        <link rel="stylesheet" href="main.css" />
+
+        <!-- Google JQuery CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script src="form.js"></script>
+      </head>
+      <body>
+        <div>
+          <div class="panel shadow1">
+            <form class="login-form">
+              <div class="panel-switch animated fadeIn">
+                <button type="button" id="sign_up" class="active-button">
+                  注 册
+                </button>
+                <button type="button" id="log_in" class="" disabled>
+                  登 录
+                </button>
+              </div>
+              <h1 class="animated fadeInUp animate1" id="title-login">
+                欢迎回来!
+              </h1>
+              <h1 class="animated fadeInUp animate1 hidden" id="title-signup">
+                欢迎 !
+              </h1>
+              <fieldset id="login-fieldset">
+                <input
+                  class="login animated fadeInUp animate2"
+                  name="用户名"
+                  type="textbox"
+                  required
+                  placeholder="用户名"
+                  value=""
+                />
+                <input
+                  class="login animated fadeInUp animate3"
+                  name="密码"
+                  type="password"
+                  required
+                  placeholder="密码"
+                  value=""
+                />
+              </fieldset>
+              <fieldset id="signup-fieldset" class="hidden">
+                <input
+                  class="login animated fadeInUp animate2"
+                  name="username"
+                  type="textbox"
+                  required
+                  placeholder="用户名"
+                  value=""
+                />
+                <input
+                  class="login animated fadeInUp animate3"
+                  name="password"
+                  type="password"
+                  placeholder="密码"
+                  required
+                  value=""
+                />
+              </fieldset>
+              <input
+                type="submit"
+                id="login-form-submit"
+                class="login_form button animated fadeInUp animate4"
+                value="登 录"
+              />
+              <input
+                type="submit"
+                id="signup-form-submit"
+                class="login_form button animated fadeInUp animate4 hidden"
+                value="注 册"
+              />
+              <p>
+                <a
+                  id="lost-password-link"
+                  href=""
+                  class="animated fadeIn animate5"
+                  >忘记密码 (!)</a
+                >
+              </p>
+            </form>
+          </div>
+        </div>
+        <script src="form.js"></script>
+      </body>
+    </html>
+    <!-- partial -->
+    <script src="./script.js"></script>
+  </body>
+</html>
